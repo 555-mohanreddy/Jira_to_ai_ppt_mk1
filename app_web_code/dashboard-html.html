@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Jira to GPT-4o to Beautiful AI{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <h1 class="mb-4">Dashboard</h1>
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">System Information</h5>
+                </div>
+                <div class="card-body">
+                    <p><strong>Jira URL:</strong> {{ config.jira.url or 'Not configured' }}</p>
+                    <p><strong>Weaviate:</strong> {{ 'Embedded' if config.weaviate.use_embedded else config.weaviate.url or 'Not configured' }}</p>
+                    <p><strong>Update Interval:</strong> {{ config.update_interval }} seconds</p>
+                    <p><small>Check the <a href="{{ url_for('settings') }}">Settings</a> page to configure these values.</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}class="mb-0">System Status</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Component Status</h6>
+                            <ul class="list-group">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Jira Data Extraction
+                                    {% if project_status.components.jira_data %}
+                                    <span class="badge bg-success rounded-pill">Complete</span>
+                                    {% else %}
+                                    <span class="badge bg-warning rounded-pill">Pending</span>
+                                    {% endif %}
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Data Processing
+                                    {% if project_status.components.processed_data %}
+                                    <span class="badge bg-success rounded-pill">Complete</span>
+                                    {% else %}
+                                    <span class="badge bg-warning rounded-pill">Pending</span>
+                                    {% endif %}
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    GPT-4o Insights
+                                    {% if project_status.components.insights %}
+                                    <span class="badge bg-success rounded-pill">Complete</span>
+                                    {% else %}
+                                    <span class="badge bg-warning rounded-pill">Pending</span>
+                                    {% endif %}
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    PowerPoint Presentations
+                                    {% if project_status.components.presentations %}
+                                    <span class="badge bg-success rounded-pill">Complete</span>
+                                    {% else %}
+                                    <span class="badge bg-warning rounded-pill">Pending</span>
+                                    {% endif %}
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Beautiful AI Integration
+                                    {% if project_status.components.beautiful_ai %}
+                                    <span class="badge bg-success rounded-pill">Complete</span>
+                                    {% else %}
+                                    <span class="badge bg-warning rounded-pill">Pending</span>
+                                    {% endif %}
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Latest Information</h6>
+                            <p><strong>Last Update:</strong> {{ project_status.latest_run or 'Never' }}</p>
+                            <p><strong>Project Key:</strong> {{ config.jira.project_key or 'Not set' }}</p>
+                            <p><strong>Model:</strong> {{ config.openai.model or 'Not set' }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Run Pipeline</h5>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{{ url_for('run_pipeline') }}">
+                        <div class="mb-3">
+                            <label for="project_key" class="form-label">Jira Project Key</label>
+                            <input type="text" class="form-control" id="project_key" name="project_key" value="{{ config.jira.project_key }}">
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">Run Full Pipeline</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Quick Links</h5>
+                </div>
+                <div class="card-body">
+                    <div class="list-group">
+                        <a href="{{ url_for('presentations') }}" class="list-group-item list-group-item-action">View Presentations</a>
+                        <a href="{{ url_for('settings') }}" class="list-group-item list-group-item-action">Configuration Settings</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 
