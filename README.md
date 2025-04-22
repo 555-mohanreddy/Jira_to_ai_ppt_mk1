@@ -1,4 +1,3 @@
-I'll create a README file for this project:
 
 ```markdown
 # Jira to GPT-4o to Beautiful AI Integration
