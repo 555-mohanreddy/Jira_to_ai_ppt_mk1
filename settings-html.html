@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}Settings - Jira to GPT-4o to Beautiful AI{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <h1 class="mb-4">Settings</h1>
+    
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">Configuration Settings</h5>
+        </div>
+        <div class="card-body">
+            <form id="settings-form" method="POST" action="{{ url_for('settings') }}">
+                <!-- Jira Settings -->
+                <div class="settings-section">
+                    <h5>Jira Settings</h5>
+                    <div class="mb-3">
+                        <label for="jira_url" class="form-label">Jira URL</label>
+                        <input type="url" class="form-control" id="jira_url" name="jira_url" value="{{ config.jira.url }}" required>
+                        <div class="form-text">Your Jira instance URL (e.g., https://your-domain.atlassian.net)</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="jira_username" class="form-label">Username</label>
+                        <input type="email" class="form-control" id="jira_username" name="jira_username" value="{{ config.jira.username }}" required>
+                        <div class="form-text">Your Jira email address</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="jira_api_token" class="form-label">API Token</label>
+                        <input type="password" class="form-control" id="jira_api_token" name="jira_api_token" value="{{ config.jira.api_token }}" required>
+                        <div class="form-text">Your Jira API token (create one in Atlassian account settings)</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="jira_project_key" class="form-label">Project Key</label>
+                        <input type="text" class="form-control" id="jira_project_key" name="jira_project_key" value="{{ config.jira.project_key }}">
+                        <div class="form-text">The key of the Jira project to analyze (e.g., PROJECT)</div>
+                    </div>
+                </div>
+                
+                <hr>
+                
+                <!-- OpenAI Settings -->
+                <div class="settings-section">
+                    <h5>OpenAI Settings</h5>
+                    <div class="mb-3">
+                        <label for="openai_api_key" class="form-label">API Key</label>
+                        <input type="password" class="form-control" id="openai_api_key" name="openai_api_key" value="{{ config.openai.api_key }}" required>
+                        <div class="form-text">Your OpenAI API key</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="openai_model" class="form-label">Model</label>
+                        <select class="form-select" id="openai_model" name="openai_model">
+                            <option value="gpt-4o" {% if config.openai.model == 'gpt-4o' %}selected{% endif %}>GPT-4o</option>
+                            <option value="gpt-4o-mini" {% if config.openai.model == 'gpt-4o-mini' %}selected{% endif %}>GPT-4o mini</option>
+                        </select>
+                        <div class="form-text">The OpenAI model to use for generating insights</div>
+                    </div>
+                </div>
+                
+                <hr>
+                
+                <!-- Beautiful AI Settings -->
+                <div class="settings-section">
+                    <h5>Beautiful AI Settings</h5>
+                    <div class="mb-3">
+                        <label for="beautiful_ai_api_key" class="form-label">API Key</label>
+                        <input type="password" class="form-control" id="beautiful_ai_api_key" name="beautiful_ai_api_key" value="{{ config.beautiful_ai.api_key }}" required>
+                        <div class="form-text">Your Beautiful AI API key</div>
+                    </div>
+                </div>
+                
+                <div class="d-grid gap-2 mt-4">
+                    <button type="submit" class="btn btn-primary">Save Settings</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+<div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">System Information</h5>
+                </div>
+                <div class="card-body">
+                    <div id="alerts-container"></div>
+                    <p><strong>Server Time:</strong> <span id="server-time"></span></p>
+                    <p><strong>System Status:</strong> <span id="system-status" class="badge bg-success">Online</span></p>
+                    <p><strong>API Status:</strong> <span id="api-status" class="badge bg-success">Available</span></p>
+                    <button id="check-status" class="btn btn-sm btn-outline-primary">Check Status</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Jira to GPT-4o to Beautiful AI Integration{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Jira to GPT-4o to Beautiful AI</h1>
+        <p class="lead">Automated Business Intelligence System</p>
+        <hr class="my-4">
+        <p>This application automatically extracts data from Jira, generates insights using GPT-4o, and creates beautiful presentations.</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="{{ url_for('login') }}" role="button">Login to Dashboard</a>
+        </p>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Data Extraction</h5>
+                    <p class="card-text">Extracts tickets, sprints, epics, and comments from Jira using the REST API.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">AI-Powered Insights</h5>
+                    <p class="card-text">Generates business analyst-level insights from Jira data using GPT-4o.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Automatic Presentations</h5>
+                    <p class="card-text">Creates PowerPoint and Beautiful AI presentations automatically, updated hourly.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
