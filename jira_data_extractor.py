@@ -358,16 +358,16 @@ def main():
     Main function to demonstrate the usage of JiraDataExtractor.
     """
     # These would be provided by the user or environment variables
-    jira_url = "https://your-domain.atlassian.net"
-    username = "your-email@example.com"
-    api_token = "your-api-token"
+    jira_url = "https://dubbamohan55.atlassian.net"
+    username = "dubbamohan55@gmail.com"
+    api_token = "TATT3xFfGF0AMktQCEKwMlAjbDVRjHv1qmhit7JJKy5PsRHgGEbxoPXF-gmfdFhAY6XvLjlSwTLLMgOVJvRE5tfCDyO9oPpb27mw54IP4dq7pBJIOzxMjhX20i-2JPYt4O6XtqVF9yBu-D0Lla1BPFwzKZO_IyD9LV5xh6q7yYWs-tK2BR3c-k=C4278333"
     
     # Create the extractor
     extractor = JiraDataExtractor(jira_url, username, api_token)
     
     # Extract all data for a specific project
     # Replace "PROJECT" with your project key, or set to None for all projects
-    project_key = "PROJECT"
+    project_key = "SJA"
     
     try:
         all_data = extractor.extract_all_data(project_key)
@@ -387,3 +387,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

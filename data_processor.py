@@ -469,5 +469,26 @@ class JiraDataProcessor:
             """
             
             # Clean up the text content
-            text_content = re.s
-(Content truncated due to size limit. Use line ranges to read in chunks)
+            text_content = re.sub(r'\s+', ' ', text_content).strip()
+            vector_ready_data.append({
+                "id": row['id'],
+                "text": text_content,
+                "metadata": {
+                    "key": row['key'],
+                    "summary": row['summary'],
+                    "description": row['description'],
+                    "type": row['issue_type'],
+                    "status": row['status'],
+                    "priority": row['priority'],
+                    "assignee": row['assignee'],
+                    "reporter": row['reporter'],
+                    "created": row['created_date'],
+                    "updated": row['updated_date'],
+                    "labels": row['labels'],
+                    "components": row['components'],
+                    "epic": row.get('name_epic', ''),
+                    "epic_summary": row.get('summary_epic', '')
+                }
+            })
+        
+        return vector_ready_data
