@@ -421,5 +421,28 @@ class GPT4oIntegration:
                 logger.error(f"Error loading issues from file: {e}")
                 all_issues = []
         
-
-(Content truncated due to size limit. Use line ranges to read in chunks)
+        # Generate insights for different aspects
+        if all_issues:
+            # Status-based insights
+            status_insights = self.generate_status_insights(all_issues)
+            all_insights['status'] = status_insights
+            
+            # Type-based insights  
+            type_insights = self.generate_type_insights(all_issues)
+            all_insights['type'] = type_insights
+            
+            # Priority-based insights
+            priority_insights = self.generate_priority_insights(all_issues)
+            all_insights['priority'] = priority_insights
+            
+            # Time-based insights
+            time_insights = self.generate_time_insights(all_issues) 
+            all_insights['time'] = time_insights
+            
+            # Save insights to files
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            for insight_type, insights in all_insights.items():
+                filename = f"{output_dir}/insights_{insight_type}_{timestamp}.json"
+                with open(filename, 'w', encoding='utf-8') as f:
+                    json.dump(insights, f, indent=4)
+                logger.info(f"Saved {insight_type} insights to {filename}")
